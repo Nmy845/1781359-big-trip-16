@@ -5,7 +5,6 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "public"),
-    filename: "bundle.js"
   },
   devtool: 'source-map',
   devServer :{
