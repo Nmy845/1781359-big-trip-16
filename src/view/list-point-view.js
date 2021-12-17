@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 export const createListPointTeamplate = (object) => (
   `<ul class="trip-events__list">
 <li class="trip-events__item">

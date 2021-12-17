@@ -1,18 +1,16 @@
 import dayjs from 'dayjs';
 import {randomInt} from './utils.js';
+import require from 'requirejs';
 import {VEHICLE_TYPE, DESTINATION_LOCATION, DESTINATION_INFO, ADDITIONAL_OPTIONS} from './data.js';
 const PHOTO_ARRAY = [];
-const relativeTime = require('dayjs/plugin/relativeTime');
-dayjs.extend(relativeTime);
-
+const RelativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(RelativeTime);
 
 function TimeString(timing)  {                     //Генерация времени,при True - генерирует с "задержкой"
   if(timing) {
-    const date = dayjs().set('minutes', randomInt(30,60));
-    return date;
+    return dayjs().set('minutes', randomInt(30,60));
   }
-  const NewDate = dayjs().set('minutes', randomInt(1,30));
-  return NewDate;
+  return dayjs().set('minutes', randomInt(1,30));
 }
 
 function generatePhotos (){          //Рандомизация ID фоток
@@ -25,7 +23,8 @@ generatePhotos();
 function setTimeFromTo (object) {
   return object.map((dateForm)=>{
     const result = dayjs(dateForm.Time.TimeFrom).to(dateForm.Time.TimeTo, true);
-    return dateForm.Time.TimeFromTo = result;
+    dateForm.Time.TimeFromTo = result ;
+    return dateForm.Time.TimeFromTo ;
   });
 }
 
@@ -45,7 +44,6 @@ export function generateObject (){ //Генерация объекта
     }
   };
 }
-
 
 export const objects = []; //массив объектов
 
@@ -67,4 +65,3 @@ function locationList(arrayObjects) {   //получение городов из
 locationList(objects);
 
 export const newLocations = Array.from(new Set(locations)); //перевод в Set и обратно в массив для удаления совпадений
-
